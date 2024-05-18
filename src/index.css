@@ -1,3 +1,77 @@
+@font-face {
+  font-family: 'Eastman Roman Demi Bold';
+  src: url(EastmanRomanTrial-DemiBold.otf)
+}
+
+@font-face {
+  font-family: 'Eastman Roman Regular Offset';
+  src: url(EastmanRomanTrial-RegularOffset.otf);
+}
+
+@font-face {
+  font-family: 'Eastman Roman Medium';
+  src: url(EastmanRomanTrial-Medium.otf);
+}
+
+.top {
+  display: flex;
+  margin-left: 3.6rem;
+}
+
+.logo {
+  padding-left: 0rem;
+  padding-top: 2rem;
+}
+
+.fish {
+  margin-left: 1rem;
+  margin-top: 2rem;
+  margin-right: 0.5rem;
+  width: 5%;
+
+}
+
+.small-header {
+  font-family: "Eastman Roman Regular Offset";
+  font-size: 0.65rem;
+  margin-bottom: -1.7rem;
+}
+
 .header {
-  color: pink;
+  color: #d1d0c5;
+  font-family: "Eastman Roman Medium";
+}
+
+.paragraph {
+  color: #646669;
+  line-height: 2.3rem;
+  font-family: "Roboto Mono", monospace;
+  padding-top: 12rem;
+  padding-left: 5rem;
+  padding-right: 5rem;
+  font-size: 1.5rem;
+}
+
+.refresh-button {
+  position: fixed;
+  bottom: 15rem;
+  
+}
+
+.settings {
+  background-color: #2c2e31;
+
+}
+
+.button {
+  color: #5e6063;
+  background-color: #2c2e31;
+  border: 0rem;
+  font-family: "Eastman Roman Regular Offset";
+}
+
+
+body {
+  background-color: #323437;
+  color: white;
 }
