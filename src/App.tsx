@@ -1,19 +1,36 @@
 import { useState } from "react";
-import { Card } from "./components/Card";
 
 function App() {
   const [counter, setCounter] = useState(0);
-  const [name, setName] = useState("");
+  const [person, setPerson] = useState({
+    name: { first: "Josh" },
+    age: 23,
+  });
 
   return (
     <div>
-      <div className="card">
-        <p>OOGABOOGA</p>
-      </div>
-      <Card name="Josh" title="Nerd" link="https://dotmrjosh.com" />
-      <Card name="Alyssa" title="also Nerd" />
-      <Card name="Josh" title="Nerd" />
-      <Card name="Josh" title="Nerd" />
+      <p>{person.name.first}</p>
+      <p>{counter}</p>
+      <button
+        onClick={() => {
+          setCounter((prev) => {
+            return prev + 1;
+          });
+        }}
+      >
+        Inc
+      </button>
+      <input
+        type="text"
+        onInput={(ev) => {
+          const value = ev.currentTarget.value;
+
+          setPerson((prev) => {
+            prev.name.first = value;
+            return { ...prev };
+          });
+        }}
+      />
     </div>
   );
 }
