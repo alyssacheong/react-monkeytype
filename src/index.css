@@ -13,6 +13,11 @@
   src: url(EastmanRomanTrial-Medium.otf);
 }
 
+@font-face {
+  font-family: 'Iverse mono';
+  src: url(IverseMono-Regular.ttf);
+}
+
 .top {
   display: flex;
   margin-left: 3.6rem;
@@ -43,13 +48,16 @@
 }
 
 .paragraph {
+  position: absolute;
   color: #646669;
   line-height: 2.3rem;
   font-family: "Roboto Mono", monospace;
-  padding-top: 12rem;
+  padding-top: 8rem;
   padding-left: 5rem;
   padding-right: 5rem;
   font-size: 1.5rem;
+  font-weight: 400;
+
 }
 
 .refresh-button {
@@ -60,16 +68,54 @@
 
 .settings {
   background-color: #2c2e31;
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  border-radius: 0.25rem;
 
 }
 
 .button {
   color: #5e6063;
   background-color: #2c2e31;
+  font-family: "Iverse mono";
+  font-size: 0.7rem;
+  padding: 0.5rem;
   border: 0rem;
-  font-family: "Eastman Roman Regular Offset";
+
 }
 
+.refresh-button {
+  background-color: #323437 ;
+  border: 0rem;
+
+  width: 1.5%;
+  left: 50%;
+  
+}
+
+
+
+.input-container {
+  color: white;
+  line-height: 2.3rem;
+  font-family: "Roboto Mono", monospace;
+  top: 15.2rem;
+  padding-left: 5rem;
+  padding-right: 5rem;
+  font-size: 1.5rem;
+  position: absolute;
+  font-weight: 400;
+}
+
+.input-box {
+  background: transparent;
+  color: white;
+
+}
 
 body {
   background-color: #323437;

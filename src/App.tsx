@@ -2,10 +2,16 @@ import { useState } from "react";
 import { generate, count } from "random-words";
 import "./index.css";
 import logo from "./logo.png";
+import refresh from "./refresh.png";
 import { lorem, paragraph } from "txtgen";
+import text from "./text.tsx"
 
 export default function App() {
-  const [text, setText] = useState((generate(20) as string[]).join(" "));
+  const [text, setText] = useState((generate(40) as string[]).join(" "));
+  const [letter, setLetter] = useState({
+    character: "a",
+    index: 0,
+  });
 
   return (
     <div>
@@ -61,7 +67,7 @@ export default function App() {
             );
           }}
         >
-          caps lock
+          capslock
         </button>
 
         <button
@@ -79,14 +85,46 @@ export default function App() {
         <button
           className="refresh-button"
           onClick={() => {
+            let output_text = generate({ exactly: 44, join: " ", minLength: 2, maxLength: 8 })
             setText(
-              generate({ exactly: 44, join: " ", minLength: 2, maxLength: 8 })
+              output_text
             );
           }}
         >
-          refresh
+          <img src={refresh} className="refresh-button" alt="" />
         </button>
       </div>
+      
+      <div className="input-container">
+
+      <p className="input-text">{letter.character}</p>
+          
+
+      <input
+        className="input-box"
+        type="text"
+        onInput={(ev) => {
+          const value = ev.currentTarget.value;
+
+          setLetter((prev) => {
+            const newIndex = prev.index + 1;
+          
+            prev.character = value;
+
+            let current = value.slice(-1);
+            console.log(current);
+            console.log(newIndex);
+
+            return { ... prev, index: newIndex };
+          });
+        }}
+      ></input>
+
+      </div>
+      
+
+
+
     </div>
   );
 }
