@@ -1,17 +1,22 @@
 import { useState } from "react";
-import { generate, count } from "random-words";
+import { generate } from "random-words";
 import "./index.css";
 import logo from "./logo.png";
 import refresh from "./refresh.png";
 import { lorem, paragraph } from "txtgen";
-import text from "./text.tsx"
+// import text from "./text.tsx";
 
 export default function App() {
   const [text, setText] = useState((generate(40) as string[]).join(" "));
+  const [userInput, setUserInput] = useState("");
   const [letter, setLetter] = useState({
     character: "a",
     index: 0,
   });
+
+  const [counter, setCounter] = useState(0);
+
+  const unwritten = text.slice(userInput.length);
 
   return (
     <div>
@@ -81,50 +86,61 @@ export default function App() {
       </div>
 
       <div className="paragraph">
-        <p>{text}</p>
-        <button
-          className="refresh-button"
-          onClick={() => {
-            let output_text = generate({ exactly: 44, join: " ", minLength: 2, maxLength: 8 })
-            setText(
-              output_text
-            );
+        <p>
+          <span className="userText">{userInput}</span>
+          
+          <span className="generatedText">{unwritten}</span>
+        </p>
+        <input
+          className="input-box"
+          type="text"
+          value={userInput}
+          onInput={(ev) => {
+            const value = ev.currentTarget.value;
+            
+            if (value != unwritten.charAt(0)) {
+              console.log("hello world");
+
+            } else {
+              
+              setUserInput(value);
+              setCounter(counter + 1);
+              console.log(counter + 1);
+            }
+
+            //console.log(value);
+            // * this is the next letter that should be typed : unwritten.charAt(1)
+            // ! MAY BE USEFUL: text.charAt
+
+            
+            // setLetter((prev) => {
+            //   const newIndex = prev.index + 1;
+
+            //   prev.character = value;
+
+            //   let current = value.slice(-1);
+            //   console.log(current);
+            //   console.log(newIndex);
+
+            //   return { ...prev, index: newIndex };
+            // });
           }}
-        >
-          <img src={refresh} className="refresh-button" alt="" />
-        </button>
+        ></input>
       </div>
-      
-      <div className="input-container">
-
-      <p className="input-text">{letter.character}</p>
-          
-
-      <input
-        className="input-box"
-        type="text"
-        onInput={(ev) => {
-          const value = ev.currentTarget.value;
-
-          setLetter((prev) => {
-            const newIndex = prev.index + 1;
-          
-            prev.character = value;
-
-            let current = value.slice(-1);
-            console.log(current);
-            console.log(newIndex);
-
-            return { ... prev, index: newIndex };
+      <button
+        className="refresh-button"
+        onClick={() => {
+          let output_text = generate({
+            exactly: 44,
+            join: " ",
+            minLength: 2,
+            maxLength: 8,
           });
+          setText(output_text);
         }}
-      ></input>
-
-      </div>
-      
-
-
-
+      >
+        <img src={refresh} className="refresh-button" alt="" />
+      </button>
     </div>
   );
 }
