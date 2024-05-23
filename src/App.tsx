@@ -96,16 +96,30 @@ export default function App() {
           type="text"
           value={userInput}
           onInput={(ev) => {
-            const value = ev.currentTarget.value;
-            
-            if (value != unwritten.charAt(0)) {
-              console.log("hello world");
 
-            } else {
+            // value is the letter that was just typed
+            let value = ev.currentTarget.value;
+
+            // unwritten.charAt(0) is the character at that index
+            // counter starts at 0
+            // setUserInput is the text that has to be input
+
+            // ! DEBUGGING
+            // console.log("unwritten char at: " + unwritten.charAt(0));
+            // console.log(counter);
+            // console.log("value: " + value);
+            // console.log("last chara: " + value[value.length - 1]);
+            // setCounter((prev) => prev + 1);
+            // setUserInput(value);
+            
+            // ! DEBUGGING
+
+            if (value[value.length - 1] != unwritten.charAt(0)) {
+              console.log("hello world");
               
+            } else {
+              setCounter((prev) => prev + 1);
               setUserInput(value);
-              setCounter(counter + 1);
-              console.log(counter + 1);
             }
 
             //console.log(value);
