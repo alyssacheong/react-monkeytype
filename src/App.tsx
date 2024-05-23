@@ -9,10 +9,10 @@ import { lorem, paragraph } from "txtgen";
 export default function App() {
   const [text, setText] = useState((generate(40) as string[]).join(" "));
   const [userInput, setUserInput] = useState("");
-  const [letter, setLetter] = useState({
-    character: "a",
-    index: 0,
-  });
+  // const [letter, setLetter] = useState({
+  //   character: "a",
+  //   index: 0,
+  // });
 
   const [counter, setCounter] = useState(0);
 
@@ -120,6 +120,9 @@ export default function App() {
             } else {
               setCounter((prev) => prev + 1);
               setUserInput(value);
+              
+              // below line is needed otherwise it complains that counter is never read
+              console.log(counter);
             }
 
             //console.log(value);
