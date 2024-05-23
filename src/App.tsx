@@ -115,7 +115,7 @@ export default function App() {
             // ! DEBUGGING
 
             if (value[value.length - 1] != unwritten.charAt(0)) {
-              console.log("hello world");
+              console.log("wrong letter");
               
             } else {
               setCounter((prev) => prev + 1);
