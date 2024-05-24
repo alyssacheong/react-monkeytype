@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { generate } from "random-words";
 import "./index.css";
 import logo from "./logo.png";
@@ -9,14 +9,22 @@ import { lorem, paragraph } from "txtgen";
 export default function App() {
   const [text, setText] = useState((generate(40) as string[]).join(" "));
   const [userInput, setUserInput] = useState("");
+  const [incorrectText, setIncorrectText] = useState("");
+  //const [isIncorrect, setIsIncorrect] = useState(0);
   // const [letter, setLetter] = useState({
   //   character: "a",
   //   index: 0,
   // });
 
   const [counter, setCounter] = useState(0);
-
   const unwritten = text.slice(userInput.length);
+
+
+  useEffect(() => {
+    console.log("incorrect");
+    setIncorrectText(incorrectText);
+  }, [incorrectText])
+
 
   return (
     <div>
@@ -88,7 +96,7 @@ export default function App() {
       <div className="paragraph">
         <p>
           <span className="userText">{userInput}</span>
-          
+          <span className="incorrectText">{incorrectText}</span>
           <span className="generatedText">{unwritten}</span>
         </p>
         <input
@@ -96,51 +104,40 @@ export default function App() {
           type="text"
           value={userInput}
           onInput={(ev) => {
-
             // value is the letter that was just typed
             let value = ev.currentTarget.value;
 
+            // * THIS IS IMPORTANT INFORMATION
             // unwritten.charAt(0) is the character at that index
             // counter starts at 0
             // setUserInput is the text that has to be input
 
-            // ! DEBUGGING
+            // ! debugging
             // console.log("unwritten char at: " + unwritten.charAt(0));
             // console.log(counter);
             // console.log("value: " + value);
             // console.log("last chara: " + value[value.length - 1]);
             // setCounter((prev) => prev + 1);
             // setUserInput(value);
+            // ! debugging
+            console.log(value);
             
-            // ! DEBUGGING
-
             if (value[value.length - 1] != unwritten.charAt(0)) {
               console.log("wrong letter typed: " + value[value.length - 1]);
+             // setIsIncorrect((prev) => prev + 1);
+              console.log("value: " + value);
+              console.log("letter: " + value[value.length - 1]);
+              setIncorrectText(value);
+              
               
             } else {
               setCounter((prev) => prev + 1);
               setUserInput(value);
               
+
               // below line is needed otherwise it complains that counter is never read
               console.log(counter);
             }
-
-            //console.log(value);
-            // * this is the next letter that should be typed : unwritten.charAt(1)
-            // ! MAY BE USEFUL: text.charAt
-
-            
-            // setLetter((prev) => {
-            //   const newIndex = prev.index + 1;
-
-            //   prev.character = value;
-
-            //   let current = value.slice(-1);
-            //   console.log(current);
-            //   console.log(newIndex);
-
-            //   return { ...prev, index: newIndex };
-            // });
           }}
         ></input>
       </div>

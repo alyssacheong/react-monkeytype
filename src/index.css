@@ -126,6 +126,10 @@
   color: white;
 }
 
+.incorrectText {
+  color: red;
+}
+
 body {
   background-color: #323437;
   color: white;
