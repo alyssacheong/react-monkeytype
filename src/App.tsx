@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { generate } from "random-words";
 import "./index.css";
 import logo from "./logo.png";
@@ -10,20 +10,11 @@ export default function App() {
   const [text, setText] = useState((generate(40) as string[]).join(" "));
   const [userInput, setUserInput] = useState("");
   const [incorrectText, setIncorrectText] = useState("");
-  //const [isIncorrect, setIsIncorrect] = useState(0);
-  // const [letter, setLetter] = useState({
-  //   character: "a",
-  //   index: 0,
-  // });
+
+  
 
   const [counter, setCounter] = useState(0);
   const unwritten = text.slice(userInput.length);
-
-
-  useEffect(() => {
-    console.log("incorrect");
-    setIncorrectText(incorrectText);
-  }, [incorrectText])
 
 
   return (
@@ -120,19 +111,20 @@ export default function App() {
             // setCounter((prev) => prev + 1);
             // setUserInput(value);
             // ! debugging
-            console.log(value);
-            
+
+            console.log("value: " + value);
             if (value[value.length - 1] != unwritten.charAt(0)) {
-              console.log("wrong letter typed: " + value[value.length - 1]);
-             // setIsIncorrect((prev) => prev + 1);
-              console.log("value: " + value);
-              console.log("letter: " + value[value.length - 1]);
+              
+
+              //setIsIncorrect((prev) => prev + 1);
+              
               setIncorrectText(value);
               
               
             } else {
               setCounter((prev) => prev + 1);
               setUserInput(value);
+              console.log(userInput);
               
 
               // below line is needed otherwise it complains that counter is never read
