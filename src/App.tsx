@@ -11,8 +11,8 @@ export default function App() {
   const [userInput, setUserInput] = useState(""); // all the text user has currently input
   const unwritten = text.slice(userInput.length); // all the text user is yet to input
   //let correctText = ''; // the correct text that the user has currently input
-  let incorrectText = '';
-  
+
+  const [incorrectText, setIncorrectText] = useState("");
 
 //   for (let i = 0; i < userInput.length; i++) {
 //     if (userInput[i] !== text[i]) {
@@ -115,35 +115,23 @@ export default function App() {
             // counter starts at 0
             // setUserInput is the text that has to be input
 
-            // ! debugging
-            // console.log("unwritten char at: " + unwritten.charAt(0));
-            // console.log(counter);
-            // console.log("value: " + value);
-            // console.log("last chara: " + value[value.length - 1]);
-            // setCounter((prev) => prev + 1);
-            // setUserInput(value);
-            // ! debugging
-
             setCounter((prev) => prev + 1);
             console.log(counter);
-
-           // console.log("value: " + value);
-
-           
-
-
-
+            
             if (value[value.length - 1] != unwritten.charAt(0)) {
-              incorrectText += value[value.length - 1];
-              console.log("incorrect text: " + incorrectText);
 
-              
+              setIncorrectText(prevIncorrectText => {
+                const newIncorrectText = prevIncorrectText + value[value.length - 1];
+                console.log("incorrect text: " + newIncorrectText);
+                return newIncorrectText;
+              });
             } else {
               
               setUserInput(value);
               console.log(userInput);
               
             }
+            
           }}
         ></input>
       </div>
