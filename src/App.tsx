@@ -7,14 +7,26 @@ import { lorem, paragraph } from "txtgen";
 // import text from "./text.tsx";
 
 export default function App() {
-  const [text, setText] = useState((generate(40) as string[]).join(" "));
-  const [userInput, setUserInput] = useState("");
-  const [incorrectText, setIncorrectText] = useState("");
-
+  const [text, setText] = useState((generate(40) as string[]).join(" ")); // all the text that needs to be input
+  const [userInput, setUserInput] = useState(""); // all the text user has currently input
+  const unwritten = text.slice(userInput.length); // all the text user is yet to input
+  //let correctText = ''; // the correct text that the user has currently input
+  let incorrectText = '';
   
 
+//   for (let i = 0; i < userInput.length; i++) {
+//     if (userInput[i] !== text[i]) {
+//       incorrectText += userInput[i];
+//       break;
+//     }
+//     correctText += userInput[i];
+//  }
+
+
+
+
   const [counter, setCounter] = useState(0);
-  const unwritten = text.slice(userInput.length);
+
 
 
   return (
@@ -112,23 +124,25 @@ export default function App() {
             // setUserInput(value);
             // ! debugging
 
-            console.log("value: " + value);
-            if (value[value.length - 1] != unwritten.charAt(0)) {
-              
+            setCounter((prev) => prev + 1);
+            console.log(counter);
 
-              //setIsIncorrect((prev) => prev + 1);
-              
-              setIncorrectText(value);
-              
+           // console.log("value: " + value);
+
+           
+
+
+
+            if (value[value.length - 1] != unwritten.charAt(0)) {
+              incorrectText += value[value.length - 1];
+              console.log("incorrect text: " + incorrectText);
+
               
             } else {
-              setCounter((prev) => prev + 1);
+              
               setUserInput(value);
               console.log(userInput);
               
-
-              // below line is needed otherwise it complains that counter is never read
-              console.log(counter);
             }
           }}
         ></input>
