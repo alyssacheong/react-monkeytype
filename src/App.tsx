@@ -13,18 +13,6 @@ export default function App() {
   //let correctText = ''; // the correct text that the user has currently input
 
   const [incorrectText, setIncorrectText] = useState("");
-
-//   for (let i = 0; i < userInput.length; i++) {
-//     if (userInput[i] !== text[i]) {
-//       incorrectText += userInput[i];
-//       break;
-//     }
-//     correctText += userInput[i];
-//  }
-
-
-
-
   const [counter, setCounter] = useState(0);
 
 
@@ -117,7 +105,7 @@ export default function App() {
 
             setCounter((prev) => prev + 1);
             console.log(counter);
-            
+
             if (value[value.length - 1] != unwritten.charAt(0)) {
 
               setIncorrectText(prevIncorrectText => {
