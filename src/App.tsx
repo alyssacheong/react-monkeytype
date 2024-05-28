@@ -12,7 +12,6 @@ export default function App() {
   const unwritten = text.slice(userInput.length); // all the text user is yet to input
   const [previousValue, setPreviousValue] = useState(""); // previous input value to detect deletions
 
-  //let correctText = ''; // the correct text that the user has currently input
 
   const [incorrectText, setIncorrectText] = useState("");
   const [counter, setCounter] = useState(0);
