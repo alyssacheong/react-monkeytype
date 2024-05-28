@@ -10,6 +10,8 @@ export default function App() {
   const [text, setText] = useState((generate(40) as string[]).join(" ")); // all the text that needs to be input
   const [userInput, setUserInput] = useState(""); // all the text user has currently input
   const unwritten = text.slice(userInput.length); // all the text user is yet to input
+  const [previousValue, setPreviousValue] = useState(""); // previous input value to detect deletions
+
   //let correctText = ''; // the correct text that the user has currently input
 
   const [incorrectText, setIncorrectText] = useState("");
@@ -103,22 +105,44 @@ export default function App() {
             // counter starts at 0
             // setUserInput is the text that has to be input
 
-            setCounter((prev) => prev + 1);
-            console.log(counter);
-
-            if (value[value.length - 1] != unwritten.charAt(0)) {
-
-              setIncorrectText(prevIncorrectText => {
-                const newIncorrectText = prevIncorrectText + value[value.length - 1];
-                console.log("incorrect text: " + newIncorrectText);
-                return newIncorrectText;
-              });
-            } else {
-              
-              setUserInput(value);
-              console.log(userInput);
-              
+            // if the input was correct, increment the counter
+            if (value.length > previousValue.length) {
+              setCounter((prev) => prev + 1);
             }
+
+            if (value.length < previousValue.length) {
+              // deletion
+              const deleteChar = previousValue[previousValue.length - 1]; 
+
+              if (incorrectText.includes(deleteChar)) {
+                // if the character deleted was incorrect text, remove it from incorrectText
+                setIncorrectText(incorrectText.slice(-1));
+
+
+              } else {
+                // if the character deleted was correct, reset userInput
+                setUserInput(value);
+              }
+
+            } else {
+              if (value[value.length - 1] != unwritten.charAt(0)) {
+                setIncorrectText(prevIncorrectText => prevIncorrectText + value[value.length - 1]);
+  
+              } else {
+                
+                setUserInput(value);
+                console.log(userInput);
+              }
+
+            } 
+            // update the previous value
+            setPreviousValue(value);
+            console.log(counter);
+            console.log(incorrectText);
+            
+  
+
+            
             
           }}
         ></input>
