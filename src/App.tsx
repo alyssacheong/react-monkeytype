@@ -95,6 +95,33 @@ export default function App() {
           className="input-box"
           type="text"
           value={userInput}
+          onKeyDown={(ev) => {
+            let current = ev.currentTarget.value;
+            if (ev.key == 'Backspace') {
+              
+              
+              // if incorrecttext = 0, decrease userInput
+              // if userinput = 0, decrease incorrecttext
+
+              // outcomes
+              // incorrect text and correct text
+              // only incorrect text
+              // only correct text
+
+              if (incorrectText != '') {
+                // there is incorrect text present
+                setIncorrectText(incorrectText.slice(-1));
+                console.log("Hello");
+                console.log("incorrect text: " + incorrectText);
+              } else {
+                // there is only correct text
+                console.log("userInput: " + userInput);
+                console.log("user slice: " + userInput.slice(0, userInput.length - 1));
+                setUserInput(userInput.slice(0, userInput.length - 1));
+              }
+
+            } 
+          }}
           onInput={(ev) => {
             // value is the letter that was just typed
             let value = ev.currentTarget.value;
@@ -104,38 +131,51 @@ export default function App() {
             // counter starts at 0
             // setUserInput is the text that has to be input
 
-            // if the input was correct, increment the counter
-            if (value.length > previousValue.length) {
-              setCounter((prev) => prev + 1);
-            }
-
-            if (value.length < previousValue.length) {
-              // deletion
-              const deleteChar = previousValue[previousValue.length - 1]; 
-
-              if (incorrectText.includes(deleteChar)) {
-                // if the character deleted was incorrect text, remove it from incorrectText
-                setIncorrectText(incorrectText.slice(-1));
 
 
-              } else {
-                // if the character deleted was correct, reset userInput
-                setUserInput(value);
-              }
+            if (value[value.length - 1] != unwritten.charAt(0)) {
+              setIncorrectText(prevIncorrectText => prevIncorrectText + value[value.length - 1]);
 
             } else {
-              if (value[value.length - 1] != unwritten.charAt(0)) {
-                setIncorrectText(prevIncorrectText => prevIncorrectText + value[value.length - 1]);
-  
-              } else {
-                
-                setUserInput(value);
-                console.log(userInput);
-              }
+              
+              setUserInput(value);
+              console.log(userInput);
+            }
+          
 
-            } 
+            // ! THIS IS THE OLD DELETION CODE
+            // if the input was correct, increment the counter
+            // if (value.length > previousValue.length) {
+            //   setCounter((prev) => prev + 1);
+            // }
+            // if (value.length < previousValue.length) {
+            //   // deletion
+            //   const deleteChar = previousValue[previousValue.length - 1]; 
+
+            //   if (incorrectText.includes(deleteChar)) {
+            //     // if the character deleted was incorrect text, remove it from incorrectText
+            //     setIncorrectText(incorrectText.slice(-1));
+
+
+            //   } else {
+            //     // if the character deleted was correct, reset userInput
+            //     setUserInput(value);
+            //   }
+
+            // } else {
+            //   if (value[value.length - 1] != unwritten.charAt(0)) {
+            //     setIncorrectText(prevIncorrectText => prevIncorrectText + value[value.length - 1]);
+  
+            //   } else {
+                
+            //     setUserInput(value);
+            //     console.log(userInput);
+            //   }
+
+            // } 
             // update the previous value
-            setPreviousValue(value);
+            //setPreviousValue(value);
+           
             console.log(counter);
             console.log(incorrectText);
             
