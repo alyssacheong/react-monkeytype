@@ -110,9 +110,10 @@ export default function App() {
 
               if (incorrectText != '') {
                 // there is incorrect text present
+                console.log("incorrect text: " + incorrectText);
                 setIncorrectText(incorrectText.slice(-1));
                 console.log("Hello");
-                console.log("incorrect text: " + incorrectText);
+                
               } else {
                 // there is only correct text
                 console.log("userInput: " + userInput);
@@ -174,7 +175,7 @@ export default function App() {
 
             // } 
             // update the previous value
-            //setPreviousValue(value);
+            // setPreviousValue(value);
            
             console.log(counter);
             console.log(incorrectText);
