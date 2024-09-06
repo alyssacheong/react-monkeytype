@@ -1,1 +1,1 @@
-I attempt to make monkeytype.com
+A really scuffed version of monkeytype.com
