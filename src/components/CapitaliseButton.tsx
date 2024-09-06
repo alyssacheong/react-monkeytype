@@ -2,8 +2,11 @@ import React from "react";
 import { generate } from "random-words";
 import { SetTextProps } from "../types";
 
-const CapitalizeButton: React.FC<SetTextProps> = ({ setText, setUserInput, setIncorrectText }) => {
-
+const CapitalizeButton: React.FC<SetTextProps> = ({
+  setText,
+  setUserInput,
+  setIncorrectText,
+}) => {
   return (
     <button
       className="button"

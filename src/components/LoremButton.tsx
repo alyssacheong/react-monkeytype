@@ -2,7 +2,11 @@ import React from "react";
 import { lorem } from "txtgen";
 import { SetTextProps } from "../types";
 
-const LoremButton: React.FC<SetTextProps> = ({ setText, setUserInput, setIncorrectText }) => {
+const LoremButton: React.FC<SetTextProps> = ({
+  setText,
+  setUserInput,
+  setIncorrectText,
+}) => {
   return (
     <button
       className="button"

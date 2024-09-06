@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { generate } from "random-words";
 import "./index.css";
-import logo from "./logo.png";
-import refresh from "./refresh.png";
+import logo from "./assets/logo.png";
+import refresh from "./assets/refresh.png";
 import LoremButton from "./components/LoremButton";
 import CapitaliseButton from "./components/CapitaliseButton";
 import CapslockButton from "./components/CapsLockButton";
@@ -28,7 +28,7 @@ export default function App() {
   const [finalTime, setFinalTime] = useState<number>(0);
 
   useEffect(() => {
-    const timerArray: Array<number | string > = CalculateTime(time);
+    const timerArray: Array<number | string> = CalculateTime(time);
     setTimerArray(timerArray);
   }, [time]);
 
@@ -52,11 +52,11 @@ export default function App() {
 
   const calculateWPM = (timeInMilliseconds: number): number => {
     const str = userInput;
-    const words = str.split(' ');
+    const words = str.split(" ");
     const numOfWords = words.length;
     const timeInMinutes = timeInMilliseconds / 60000;
     return Math.round(numOfWords / timeInMinutes);
-  }
+  };
 
   // refresh logic
   const handleRefresh = () => {
@@ -228,7 +228,10 @@ export default function App() {
             } else {
               setIncorrectText(incorrectText + value[currentIndex]);
             }
-            if (unwritten.length === 1 && value[currentIndex] === text[currentIndex]) {
+            if (
+              unwritten.length === 1 &&
+              value[currentIndex] === text[currentIndex]
+            ) {
               stopTimer();
             }
           }}

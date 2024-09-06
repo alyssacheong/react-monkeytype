@@ -1,8 +1,12 @@
-import React from 'react';
-import { generate } from 'random-words'; // assuming generate is imported here
-import { SetTextProps } from '../types';
+import React from "react";
+import { generate } from "random-words"; // assuming generate is imported here
+import { SetTextProps } from "../types";
 
-const CapslockButton: React.FC<SetTextProps> = ({ setText, setUserInput, setIncorrectText }) => {
+const CapslockButton: React.FC<SetTextProps> = ({
+  setText,
+  setUserInput,
+  setIncorrectText,
+}) => {
   return (
     <button
       className="button"
