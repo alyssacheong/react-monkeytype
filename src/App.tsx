@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { generate } from "random-words";
 import "./index.css";
 import logo from "./logo.png";
@@ -25,10 +25,10 @@ export default function App() {
   const [timerArray, setTimerArray] = useState<Array<number | string>>([]);
   const [intervalId, setIntervalId] = useState<NodeJS.Timeout | null>(null);
   const [isTyping, setIsTyping] = useState<boolean>(false);
-  const [finalTime, setFinalTime] = useState<number | null>(null);
+  const [finalTime, setFinalTime] = useState<number>(0);
 
   useEffect(() => {
-    let timerArray: Array<number> = CalculateTime(time);
+    const timerArray: Array<number | string > = CalculateTime(time);
     setTimerArray(timerArray);
   }, [time]);
 
@@ -194,7 +194,7 @@ export default function App() {
         </p>
         {unwritten.length === 0 && (
           <div className="wpm-message">
-            <p className="wpm-text">{calculateWPM(time)} WPM</p>
+            <p className="wpm-text">{calculateWPM(finalTime)} WPM</p>
           </div>
         )}
       </div>
